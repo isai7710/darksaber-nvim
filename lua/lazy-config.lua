@@ -30,14 +30,14 @@ require('lazy').setup({
   require 'plugins/gitsigns',
   require 'plugins/which-key',
   require 'plugins/telescope', 
+  require 'plugins/todo-comments',
+  require 'plugins/mini',
   -- TODO: figure out how to configure plugins below 
   -- require 'plugins/lspconfig',
   -- require 'plugins/conform',     (autoformat)
   -- require 'plugins/cmp',         (autocompletion)
   -- require 'plugins/treesitter',
   -- require 'plugins/nvim-tree',
-  require 'plugins/todo-comments',
-  require 'plugins/mini',
   -- require 'plugins/treesitter',
   -- require 'plugins/nvim-tree',
 
