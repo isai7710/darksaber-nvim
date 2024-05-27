@@ -34,7 +34,10 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true 
 
--- NOTE: whenever we write ' require 'module' ' Neovim will look in the ~/.config/nvim/lua folder for the specific module/folder with submodules
+-- NOTE: whenever we write 
+--    require 'module-name' 
+-- in this root init.lua file, Neovim will look in the ~/.config/nvim/lua folder for the 
+-- specific module-name, which can be a lua module itself OR a folder with lua submodules
 
 -- [[ Setting options ]]
 require 'options'
@@ -45,7 +48,7 @@ require 'keymaps'
 -- [[ Basic Autocommands ]]
 require 'autocmds'
 
--- [[ Bootstrap `lazy.nvim` plugin manager and install/configure plugins ]]
+-- [[ Bootstrap the `lazy.nvim` plugin manager and install/configure plugins ]]
 require 'lazy-config'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
