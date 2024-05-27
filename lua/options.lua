@@ -17,6 +17,21 @@ vim.opt.showmode = false
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.opt.clipboard = 'unnamedplus'
+-- The following allow us to yank not only within Neovim but now anything we yank is automatically added to OS clipboard
+-- Similarly with pasting, anything copied on OS clipboard can be pasted on Neovim with "p"
+--  there was a lot of trial and error with this (using ChatGPT and Neovim docs) so I'm still not completely sure how it works
+vim.g.clipboard = {
+  name = 'WslClipboard',
+  copy = {
+    ['+'] = 'clip.exe',
+    ['*'] = 'clip.exe',
+  },
+  paste = {
+    ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+  },
+  cache_enabled = 0,
+}
 
 -- Enable break indent
 vim.opt.breakindent = true
