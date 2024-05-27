@@ -1,6 +1,6 @@
 --[[ 
 -- Welcome esteemed traveler to my personal neovim config
--- couldn't have started this config withou help from the kickstart.nvim and modular-kickstart.nvim repos, shout out TJ fr
+-- couldn't have started this config withou help from the kickstart.nvim and modular-kickstart.nvim repos, shout out TJ fr, I left a lot of helpful comments from those repositories here for help
 
 10-15 min Lua guide:
   - https://learnxinyminutes.com/docs/lua/
