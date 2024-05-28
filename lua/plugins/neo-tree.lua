@@ -7,14 +7,14 @@ return {
     "MunifTanjim/nui.nvim",
     -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
   },
-  --[[
   opts = {
-    filesystem = {
-      hijack_netrw_behavior = "open_default"
+    window = {
+      position = 'left',
+      width = 30
     }
   },
-  --]]
-  config = function()
+  config = function(_, opts)
     vim.keymap.set('n', '<leader>fe', ':Neotree <CR>', {desc = 'Show neo-tree file explorer '})
+    require("neo-tree").setup(opts)
   end
 }
