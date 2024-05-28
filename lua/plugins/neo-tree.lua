@@ -9,12 +9,8 @@ return {
   },
   --[[
   opts = {
-    default_component_configs = {
-      git_status = {
-        symbols = {
-          modified = 'x',
-        }
-      }
+    filesystem = {
+      hijack_netrw_behavior = "open_default"
     }
   },
   --]]
