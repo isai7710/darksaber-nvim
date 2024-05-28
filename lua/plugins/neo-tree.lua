@@ -19,6 +19,6 @@ return {
   },
   --]]
   config = function()
-    vim.keymap.set('n', '<leader>fe', ':Neotree filesystem reveal left<CR>', {desc = 'Show neo-tree file explorer on left'})
+    vim.keymap.set('n', '<leader>fe', ':Neotree <CR>', {desc = 'Show neo-tree file explorer '})
   end
 }
