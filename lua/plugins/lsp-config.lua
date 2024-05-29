@@ -24,30 +24,33 @@ return {
   --    specific language protocol servers (LSPs) such as 'lua_ls'
   {
     'williamboman/mason-lspconfig.nvim',
-    opts = {
-      ensure_installed = {
-        -- LSPs can be added here simply as a string or as a table variable that contains specific override
-        -- configurations for that LSP
-        -- Available keys are:
-        --  - cmd (table): Override the default command used to start the server
-        --  - filetypes (table): Override the default list of associated filetypes for the server
-        --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-        --  - settings (table): Override the default settings passed when initializing the server.
-        --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-        lua_ls = {
-          settings = {
-            Lua = {
-              completion = {
-                callSnippet = 'Replace',
-              },
-              -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              -- diagnostics = { disable = { 'missing-fields' } },
+    config = function()
+      require('mason-lspconfig').setup({
+        ensure_installed = {
+          -- LSPs can be added here simply as a string or as a table variable that contains specific override
+          -- configurations for that LSP
+          -- Available keys are:
+          --  - cmd (table): Override the default command used to start the server
+          --  - filetypes (table): Override the default list of associated filetypes for the server
+          --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
+          --  - settings (table): Override the default settings passed when initializing the server.
+          --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+          lua_ls = {
+            settings = {
+              Lua = {
+                completion = {
+                  callSnippet = 'Replace',
+                },
+                -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+                -- diagnostics = { disable = { 'missing-fields' } },
+              }
             }
-          }
-        },
-        'clangd',
-      }
-    }
+          },
+          clangd = {},
+          'tsserver'
+        }
+      })
+    end
   },
   -- 3. nvim-lspconfig where most of the LSP configurations reside such as LSP related keymaps, LSP event attaching, etc
   {
@@ -73,6 +76,7 @@ return {
       local lspconfig = require('lspconfig')
       lspconfig.lua_ls.setup({})
       lspconfig.clangd.setup({})
+      lspconfig.tsserver.setup({})
 
       --  This function gets run when an LSP attaches to a particular buffer.
       --    That is to say, every time a new file is opened that is associated with
