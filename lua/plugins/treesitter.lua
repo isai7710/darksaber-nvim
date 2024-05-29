@@ -1,10 +1,10 @@
 return {
--- Highlight, edit, and navigate code
+  -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
   opts = {
     ensure_installed = { 'bash', 'c', 'python', 'html', 'javascript', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
-    -- Autoinstall languages that are not installed
+    -- Autoinstall on languages that don't have parser specified
     auto_install = true,
     highlight = {
       enable = true,
@@ -15,8 +15,8 @@ return {
     },
     indent = { enable = true, disable = { 'ruby' } },
   },
--- [[ Configure Treesitter ]] 
--- See `:help nvim-treesitter`
+  -- [[ Configure Treesitter ]]
+  -- See `:help nvim-treesitter`
   config = function(_, opts)
     -- Prefer git instead of curl in order to improve connectivity in some environments
     require('nvim-treesitter.install').prefer_git = true
