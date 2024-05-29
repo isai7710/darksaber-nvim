@@ -11,6 +11,9 @@ The `config` property is used for custom setup logic and possible plugin configu
 Alternatively, if `config` and `opts` are set, you can conveniently pass the `opts` table into `config` and use it to further configure the plugin like this:
 
 config = function(_, opts)
+
     ...
+
     require("some_plugin").setup(opts)
+
 end
