@@ -18,6 +18,7 @@ return {
   --    :Mason
   {
     'williamboman/mason.nvim',
+    lazy = false,
     opts = {}
   },
   -- 2. mason-lspconfig.nvim connects Mason (above) to the nvim-lspconfig plugin (below) and allows us to ensure the installation of
