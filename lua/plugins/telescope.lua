@@ -1,5 +1,12 @@
+-- [[ Telescope Fuzzy Finder (files, lsp, etc) ]]
+-- See `:help telescope` and `:help telescope.setup()`
+--
+-- To enter the Telescope menu simply type
+--    :Telescope
+-- This opens a window that shows you all of the things you can find with this
+-- plugin, from a history of git commits to all of your current keymaps and more
 return {
-  { -- Fuzzy Finder (files, lsp, etc)
+  {
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
     branch = '0.1.x',
@@ -18,6 +25,7 @@ return {
           return vim.fn.executable 'make' == 1
         end,
       },
+      -- plugin that sets vim.ui.select to telescope instead
       { 'nvim-telescope/telescope-ui-select.nvim' },
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
@@ -25,27 +33,7 @@ return {
     },
 
     -- [[ Configure Telescope ]]
-    -- See `:help telescope` and `:help telescope.setup()`
     config = function()
-      -- Telescope is a fuzzy finder that comes with a lot of different things that
-      -- it can fuzzy find! It's more than just a "file finder", it can search
-      -- many different aspects of Neovim, your workspace, LSP, and more!
-      --
-      -- The easiest way to use Telescope, is to start by doing something like:
-      --  :Telescope help_tags
-      --
-      -- After running this command, a window will open up and you're able to
-      -- type in the prompt window. You'll see a list of `help_tags` options and
-      -- a corresponding preview of the help.
-      --
-      -- Two important keymaps to use while in Telescope are:
-      --  - Insert mode: <c-/>
-      --  - Normal mode: ?
-      --
-      -- This opens a window that shows you all of the keymaps for the current
-      -- Telescope picker. This is really useful to discover what Telescope can
-      -- do as well as how to actually do it!
-
       require('telescope').setup({
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
@@ -56,6 +44,9 @@ return {
         --   },
         -- },
         -- pickers = {}
+        --
+        -- the 'ui-select' extension for Telescope overrides vim.ui.select, so a regular list of items
+        -- prompt uses a Telescope dropdown window for that list of items instead of the default prompt
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -64,9 +55,13 @@ return {
       })
 
       -- Enable Telescope extensions if they are installed
+      -- we could have simply done require('telescope').load_extension('ui-select') and it would have worked, but if for
+      --  some reason ui-select wasn't installed then we would have a large error that terminates the plugin loading
+      --  process, pcall simply handles errors more gracefully and doesn't terminate the whole thing upon any error loading ext
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
 
+      -- Built in telescope pickers to choose from
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
