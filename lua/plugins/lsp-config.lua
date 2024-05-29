@@ -130,7 +130,7 @@ return {
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
           -- [[ Cursor Hold and Move Autocommands ]]
-          -- Get LSP client ID
+          -- first get the LSP client ID
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           -- check if LSP client exists and supports document highlighting
           if client and client.server_capabilities.documentHighlightProvider then
