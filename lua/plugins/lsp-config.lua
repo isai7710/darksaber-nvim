@@ -11,7 +11,7 @@
 --  - and more!
 -- LSPs must be installed separately from Neovim, which is where Mason.nvim comes into play
 -------------------------------------------------------
--- It is important for the following plugins to be loaded in this order
+-- It is important for the following plugins to be loaded in this order (we could have also just done dependencies but oh well)
 return {
   -- 1. mason.nvim package manager
   -- To check the current status of installed tools and/or manually install other tools, you can run
@@ -47,7 +47,8 @@ return {
               }
             }
           },
-          clangd = {},
+          'pyright',
+          'clangd',
           'tsserver'
         }
       })
