@@ -1,7 +1,11 @@
 return {
   { -- Autoformat
     'stevearc/conform.nvim',
-    lazy = false,
+    -- lazy load on the following events, since we only need formatting when we're working inside a buffer
+    -- BufReadPre: when we open an already existing file
+    -- BufNewFile: triggered when we open a buffer for a file that doesn't already exist
+    event = { "BufReadPre", "BufNewFile" },
+    -- set keymap to Autoformat using conform
     keys = {
       {
         '<leader>af',
@@ -32,6 +36,11 @@ return {
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
         javascript = { { "prettierd", "prettier" } },
+        javascriptreact = { "prettier" },
+        css = { "prettier" },
+        html = { "prettier" },
+        json = { "prettier" },
+        markdown = { "prettier" }
       },
     },
   },
