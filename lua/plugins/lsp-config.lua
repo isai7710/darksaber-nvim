@@ -61,11 +61,17 @@ return {
         -- Using the mason-tool-installer plugin we can add other tools other than LSPs that we want Mason to install
         --  automatically by writing them under ensure_installed. This includes any DAPs Linters or Formatters
         -- This way we ensure more consistency throughout different systems as we don't have to use the Mason UI to install
-        --  other tools
+        --  other tools every time across sytems
         'WhoIsSethDaniel/mason-tool-installer.nvim',
         config = function()
           require('mason-tool-installer').setup({
-            -- ensure_installed = {}
+            ensure_installed = {
+              --'stylua',
+              'prettierd',
+              'prettier',
+              'isort',
+              'black'
+            }
           })
         end
       },
