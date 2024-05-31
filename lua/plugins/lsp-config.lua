@@ -95,16 +95,22 @@ return {
       -- LSP servers and clients are able to communicate to each other on what features they support, but we have to define
       --  those features
       -- By default, Neovim doesn't support everything that is in an LSP specification.
-      -- When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
-      -- So, we create new capabilities with nvim cmp, and then broadcast that to the servers here:
-      -- local capabilities = vim.lsp.protocol.make_client_capabilities()
-      -- capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+      -- When you add and configure nvim-cmp, luasnip, etc (see cmp.lua module) Neovim now has *more* capabilities.
+      -- So, we create new capabilities with nvim cmp, and then broadcast that to the servers below
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
       --[[ set up individual language servers here with server specific settings if necessary ]]
       local lspconfig = require('lspconfig')
-      lspconfig.lua_ls.setup({})
-      lspconfig.clangd.setup({})
-      lspconfig.tsserver.setup({})
+      lspconfig.lua_ls.setup({
+        -- broadcast nvim cmp capabilities
+        capabilities = capabilities
+      })
+      lspconfig.clangd.setup({
+        capabilities = capabilities
+      })
+      lspconfig.tsserver.setup({
+        capabilities = capabilities
+      })
 
       --  This function gets run when an LSP attaches to a particular buffer.
       --    That is to say, every time a new file is opened that is associated with
