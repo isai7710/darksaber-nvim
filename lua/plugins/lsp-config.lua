@@ -73,6 +73,7 @@ return {
             'black'
           }
           local linters = {
+            'eslint',
             'eslint_d',
             'stylelint',
             'htmlhint',

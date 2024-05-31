@@ -10,7 +10,7 @@ return {
     -- which is found as a dependency of nvim-lspconfig in the lsp-config.lua file OR manually
     -- install them (through the Mason UI or other means)
     lint.linters_by_ft = {
-      javascript = { 'eslint_d' },
+      javascript = { 'eslint_d', 'eslint' },
       javascriptreact = { 'eslint_d' },
       python = { 'pylint' },
     }
