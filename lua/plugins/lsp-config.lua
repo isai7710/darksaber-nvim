@@ -77,9 +77,6 @@ return {
             'pylint'
           }
           local tools = vim.list_extend(formatters, linters)
-          for i = 1, #tools do
-            print(tools[i])
-          end
           require('mason-tool-installer').setup({
             ensure_installed = tools
           })
