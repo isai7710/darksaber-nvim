@@ -65,14 +65,23 @@ return {
         --  manually install other tools every time we swich sytems
         'WhoIsSethDaniel/mason-tool-installer.nvim',
         config = function()
+          local formatters = {
+            --'stylua',
+            'prettierd',
+            'prettier',
+            'isort',
+            'black'
+          }
+          local linters = {
+            'eslint_d',
+            'pylint'
+          }
+          local tools = vim.list_extend(formatters, linters)
+          for i = 1, #tools do
+            print(tools[i])
+          end
           require('mason-tool-installer').setup({
-            ensure_installed = {
-              --'stylua',
-              'prettierd',
-              'prettier',
-              'isort',
-              'black'
-            }
+            ensure_installed = tools
           })
         end
       },
