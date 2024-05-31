@@ -74,6 +74,8 @@ return {
           }
           local linters = {
             'eslint_d',
+            'stylelint',
+            'htmlhint',
             'pylint'
           }
           local tools = vim.list_extend(formatters, linters)
