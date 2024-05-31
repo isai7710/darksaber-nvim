@@ -5,6 +5,7 @@ return {
   config = function()
     -- load the plugin
     local lint = require('lint')
+
     -- specify linters by filetype, ensure these were installed by the mason-tool-installer
     -- which is found as a dependency of nvim-lspconfig in the lsp-config.lua file OR manually
     -- install them (through the Mason UI or other means)
@@ -13,7 +14,7 @@ return {
       javascriptreact = { 'eslint_d' },
       python = { 'pylint' },
     }
-
+    -- auto lint upon entering buffer, on save, and on leaving insert mode
     vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
       group = vim.api.nvim_create_augroup('lint', { clear = true }),
       callback = function()
