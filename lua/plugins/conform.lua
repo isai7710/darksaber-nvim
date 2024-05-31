@@ -5,19 +5,23 @@ return {
     -- BufReadPre: when we open an already existing file
     -- BufNewFile: triggered when we open a buffer for a file that doesn't already exist
     event = { "BufReadPre", "BufNewFile" },
-    -- set keymap to Autoformat using conform
+    -- set keymap to autoformat using conform
     keys = {
       {
         '<leader>af',
         function()
-          require('conform').format { async = true, lsp_fallback = true }
+          require('conform').format({
+            async = true,
+            lsp_fallback = true
+          })
         end,
-        mode = 'n',
+        mode = { 'n', 'v' },
         desc = '[A]uto[F]ormat buffer',
       },
     },
     opts = {
       notify_on_error = false,
+      -- format on save except on specific languages
       format_on_save = function(bufnr)
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
