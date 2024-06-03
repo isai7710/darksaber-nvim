@@ -27,15 +27,15 @@ return {
     'williamboman/mason-lspconfig.nvim',
     config = function()
       require('mason-lspconfig').setup({
+        -- LSPs can be added here simply as a string or as a table variable that contains specific override
+        -- configurations for that LSP
+        -- Available keys are:
+        --  - cmd (table): Override the default command used to start the server
+        --  - filetypes (table): Override the default list of associated filetypes for the server
+        --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
+        --  - settings (table): Override the default settings passed when initializing the server.
+        --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
         ensure_installed = {
-          -- LSPs can be added here simply as a string or as a table variable that contains specific override
-          -- configurations for that LSP
-          -- Available keys are:
-          --  - cmd (table): Override the default command used to start the server
-          --  - filetypes (table): Override the default list of associated filetypes for the server
-          --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-          --  - settings (table): Override the default settings passed when initializing the server.
-          --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
           lua_ls = {
             settings = {
               Lua = {
@@ -49,7 +49,10 @@ return {
           },
           'pyright',
           'clangd',
-          'tsserver'
+          'tsserver',
+          'emmet_ls'
+          -- REMEMBER we have to configure each of these LSPs under the config function in the nvim-lspconfig plugin below and
+          -- broadcast the cmp (snippet and autocomplete plugin) plugin's capabilities
         }
       })
     end
@@ -103,13 +106,16 @@ return {
       --[[ set up individual language servers here with server specific settings if necessary ]]
       local lspconfig = require('lspconfig')
       lspconfig.lua_ls.setup({
-        -- broadcast nvim cmp capabilities
+        -- broadcast nvim cmp capabilities on every lsp if you want cmp capabilities
         capabilities = capabilities
       })
       lspconfig.clangd.setup({
         capabilities = capabilities
       })
       lspconfig.tsserver.setup({
+        capabilities = capabilities
+      })
+      lspconfig.emmet_ls.setup({
         capabilities = capabilities
       })
 
