@@ -6,6 +6,8 @@ return {
       -- Snippet Engine & its associated nvim-cmp source
       {
         'L3MON4D3/LuaSnip',
+        build = 'make install_jsregexp',
+        --[[ I'm not sure what this does but I'm using windows so I commented it all out
         build = (function()
           -- Build Step is needed for regex support in snippets.
           -- This step is not supported in many windows environments.
@@ -15,8 +17,9 @@ return {
           end
           return 'make install_jsregexp'
         end)(),
+        --]]
         dependencies = {
-          -- `friendly-snippets` contains a variety of premade snippets.
+          -- `friendly-snippets` contains a variety of premade snippets, such as familiar VS Code style snippets
           --    See the README about individual language/framework/plugin snippets:
           --    https://github.com/rafamadriz/friendly-snippets
           {
