@@ -1,7 +1,6 @@
 return {
   'mfussenegger/nvim-lint',
   -- similar to the formatter plugin conform.lua, we want to load this plugin on the following events:
-  event = { 'BufReadPre', 'BufNewFile' },
   config = function()
     -- load the plugin
     local lint = require('lint')
