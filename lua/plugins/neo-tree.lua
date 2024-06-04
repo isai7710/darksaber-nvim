@@ -14,7 +14,7 @@ return {
     }
   },
   config = function(_, opts)
-    vim.keymap.set('n', '<leader>fe', ':Neotree <CR>', {desc = 'Show neo-tree file explorer '})
+    vim.keymap.set('n', '<leader>fe', ':Neotree <CR>', { desc = 'Show neo-tree file explorer ' })
     require("neo-tree").setup(opts)
   end
 }
