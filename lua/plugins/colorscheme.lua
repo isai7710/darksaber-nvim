@@ -13,7 +13,8 @@ return {
       telescope = {
         enabled = true,
       },
-      which_key = true,
+      which_key = false,
+      neotree = true,
     },
   },
   name = "catppuccin",
