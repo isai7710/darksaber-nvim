@@ -1,4 +1,4 @@
---[[ 
+--[[
 -- Welcome esteemed traveler to my personal neovim config
 -- I couldn't have started this config withou help from the kickstart.nvim and modular-kickstart.nvim repos, shout out TJ fr, I left a lot of helpful comments from those repositories here for help
 
@@ -29,11 +29,11 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = true 
+vim.g.have_nerd_font = true
 
 -- NOTE: whenever we write...
---    require 'module-name' 
--- in this root init.lua file, Neovim will look in the ~/.config/nvim/lua folder for the 
+--    require 'module-name'
+-- in this root init.lua file, Neovim will look in the ~/.config/nvim/lua folder for the
 -- specific module-name, which can be a lua module itself OR a folder with lua submodules
 
 -- [[ Setting options ]]
@@ -50,13 +50,13 @@ require 'autocmds'
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system { 
-    'git', 
-    'clone', 
-    '--filter=blob:none', 
+  vim.fn.system {
+    'git',
+    'clone',
+    '--filter=blob:none',
     'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable', 
-    lazypath 
+    '--branch=stable',
+    lazypath
   }
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
@@ -64,10 +64,10 @@ vim.opt.rtp:prepend(lazypath)
 --[[ Install plugins using lazy ]]
 require('lazy').setup('plugins')
 
---  NOTE: To check the current status of your plugins, run the following 
+--  NOTE: To check the current status of your plugins, run the following
 --    :Lazy
 --
--- TODO: figure out how to configure plugins below 
+-- TODO: figure out how to configure plugins below
 -- require 'plugins/lspconfig',
 -- require 'plugins/conform',     (autoformat)
 -- require 'plugins/cmp',         (autocompletion)
