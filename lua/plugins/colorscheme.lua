@@ -4,7 +4,11 @@ return {
     name = 'catppuccin',
     priority = 1000,
     opts = {
-      transparent_background = true,
+      dim_inactive = {
+        enabled = true,
+        shade = 'dark',
+        percentage = 0.5,
+      },
       term_colors = true,
       flavour = 'mocha',
       integrations = {
@@ -20,7 +24,7 @@ return {
       },
     },
     init = function()
-      vim.cmd.colorscheme 'catppuccin-mocha'
+      vim.cmd.colorscheme 'catppuccin'
     end
   },
 }
