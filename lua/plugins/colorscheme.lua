@@ -14,12 +14,17 @@ return {
       integrations = {
         cmp = true,
         gitsigns = true,
+        indent_blankline = {
+          enabled = true,
+          scope_color = "",
+          colored_indent_levels = false,
+        },
         treesitter = true,
         mason = true,
         telescope = {
-          enabled = false,
+          enabled = true,
         },
-        which_key = false,
+        which_key = true,
         neotree = true,
       },
     },
