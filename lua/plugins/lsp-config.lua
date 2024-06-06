@@ -50,7 +50,8 @@ return {
           'pyright',
           'clangd',
           'tsserver',
-          'emmet_ls'
+          -- 'emmet_ls' was fine but it provided super noisy completion for html, any text you wrote could get autocompleted into an arbitrary HTML tag that isnt useful, the emmet lsp below fixed that
+          'emmet_language_server'
           -- REMEMBER we have to configure each of these LSPs under the config function in the nvim-lspconfig plugin below and
           -- broadcast the cmp (snippet and autocomplete plugin) plugin's capabilities
         }
@@ -115,7 +116,7 @@ return {
       lspconfig.tsserver.setup({
         capabilities = capabilities
       })
-      lspconfig.emmet_ls.setup({
+      lspconfig.emmet_language_server.setup({
         capabilities = capabilities
       })
 
