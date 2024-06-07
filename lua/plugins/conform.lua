@@ -41,6 +41,8 @@ return {
         -- is found.
         javascript = { { "prettierd", "prettier" } },
         javascriptreact = { "prettier" },
+        typescript = { { "prettierd", "prettier" } },
+        typescriptreact = { "prettier" },
         css = { "prettier" },
         html = { "prettier" },
         json = { "prettier" },
