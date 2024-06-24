@@ -11,7 +11,7 @@
 --  - and more!
 -- LSPs must be installed separately from Neovim, which is where Mason.nvim comes into play
 -------------------------------------------------------
--- It is important for the following plugins to be loaded in this order (we could have also just done dependencies but oh well)
+-- NOTE: It is important for the following plugins to be loaded in this order (we could have also just done dependencies but oh well)
 return {
   -- 1. mason.nvim package manager
   -- To check the current status of installed tools and/or manually install other tools, you can run
@@ -29,7 +29,7 @@ return {
       require('mason-lspconfig').setup({
         -- LSPs can be added here simply as a string or as a table variable that contains specific override
         -- configurations for that LSP
-        -- Available keys are:
+        -- Available keys for the LSP table variables are:
         --  - cmd (table): Override the default command used to start the server
         --  - filetypes (table): Override the default list of associated filetypes for the server
         --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
@@ -47,10 +47,12 @@ return {
               }
             }
           },
-          'pyright',
+          'pylsp',
           'clangd',
           'tsserver',
-          -- 'emmet_ls' was fine but it provided super noisy completion for html, any text you wrote could get autocompleted into an arbitrary HTML tag that isnt useful, the emmet lsp below fixed that
+          -- The 'emmet_ls' LSP was fine but it provided super noisy completion for html, any text you wrote could get
+          -- autocompleted into an arbitrary HTML tag that isnt useful, so I added the 'emmet_language_server' LSP instead to fix that
+          -- 'emmet_ls'
           'emmet_language_server'
           -- REMEMBER we have to configure each of these LSPs under the config function in the nvim-lspconfig plugin below and
           -- broadcast the cmp (snippet and autocomplete plugin) plugin's capabilities
@@ -111,6 +113,9 @@ return {
         capabilities = capabilities
       })
       lspconfig.clangd.setup({
+        capabilities = capabilities
+      })
+      lspconfig.pylsp.setup({
         capabilities = capabilities
       })
       lspconfig.tsserver.setup({
