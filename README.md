@@ -30,12 +30,39 @@ Run "nvim -V1 -v" for more info
 
 7. Now if you want some configuration files, create the config directory with `mkdir -p ~/.config/nvim` and either start writing your lua configs or fork them from mine if you want. Go crazy.
 
-## Additional Notes
+### Another quick note on Lua and Luarocks
 
-### lua/options.lua
+Since I'm using lazy.nvim, one of the requirements is to have luarocks installed. Here's how I got the default installation of Lua and Luarocks under /usr/local:
 
--- -- See `:help vim.opt`
--- NOTE: For more options, you can see `:help option-list`
+1. Ensure you have the build prerequisites: `sudo apt install build-essential libreadline-dev unzip'
+2. Run the following to build and install **Lua** (download package tar ball, extract, build and install).
+
+```
+curl -R -O http://www.lua.org/ftp/lua-5.3.5.tar.gz
+tar -zxf lua-5.3.5.tar.gz
+cd lua-5.3.5
+make linux test
+sudo make install
+```
+
+(You can use wget too)
+
+3. Run the following to build and install **Luarocks** (same deal as above but with wget, download and extract tar ball, build and install)
+
+```
+wget https://luarocks.org/releases/luarocks-3.11.1.tar.gz
+tar zxpf luarocks-3.11.1.tar.gz
+cd luarocks-3.11.1
+./configure && make && sudo make install
+```
+
+Test you have both with `lua -v` and `luarocks --version`
+
+## Additional Notes on the config
+
+### lazy.nvim package manager
+
+check lazy's health with `:checkhealth lazy`
 
 ### opts vs. config in lazy
 
@@ -48,3 +75,8 @@ Alternatively, if `config` and `opts` are set, you can conveniently pass the `op
     config = function(_, opts)
         require("some_plugin").setup(opts)
     end
+
+## Some other helpful tips/commands
+
+-- -- See `:help vim.opt`
+-- NOTE: For more options, you can see `:help option-list`
