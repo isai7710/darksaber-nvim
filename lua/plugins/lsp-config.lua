@@ -27,15 +27,15 @@ return {
     'williamboman/mason-lspconfig.nvim',
     config = function()
       require('mason-lspconfig').setup({
-        -- LSPs can be added here simply as a string or as a table variable that contains specific override
-        -- configurations for that LSP
-        -- Available keys for the LSP table variables are:
-        --  - cmd (table): Override the default command used to start the server
-        --  - filetypes (table): Override the default list of associated filetypes for the server
-        --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-        --  - settings (table): Override the default settings passed when initializing the server.
-        --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
         ensure_installed = {
+          -- INFO: LSPs can be added here simply as a string or as a table variable that contains specific override
+          -- configurations for that LSP
+          -- Available keys for the LSP table variables are:
+          --  - cmd (table): Override the default command used to start the server
+          --  - filetypes (table): Override the default list of associated filetypes for the server
+          --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
+          --  - settings (table): Override the default settings passed when initializing the server.
+          --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
           lua_ls = {
             settings = {
               Lua = {
@@ -53,7 +53,8 @@ return {
           -- The 'emmet_ls' LSP was fine but it provided super noisy completion for html, any text you wrote could get
           -- autocompleted into an arbitrary HTML tag that isnt useful, so I added the 'emmet_language_server' LSP instead to fix that
           -- 'emmet_ls'
-          'emmet_language_server'
+          'emmet_language_server',
+          'tailwindcss'
           -- REMEMBER we have to configure each of these LSPs under the config function in the nvim-lspconfig plugin below and
           -- broadcast the cmp (snippet and autocomplete plugin) plugin's capabilities
         }
@@ -122,6 +123,9 @@ return {
         capabilities = capabilities
       })
       lspconfig.emmet_language_server.setup({
+        capabilities = capabilities
+      })
+      lspconfig.tailwindcss.setup({
         capabilities = capabilities
       })
 
