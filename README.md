@@ -78,5 +78,9 @@ Alternatively, if `config` and `opts` are set, you can conveniently pass the `op
 
 ## Some other helpful tips/commands
 
+### the lazy lockfile
+
+The lazy.lock.json file reflects the states of all the plugins in your config. If kept under version control, you can revert back to your old set up whenever things break after updating plugins. The command `:Lazy restore` will revert all the plugins to the state reflected in the current lockfile.
+
 -- -- See `:help vim.opt`
 -- NOTE: For more options, you can see `:help option-list`
