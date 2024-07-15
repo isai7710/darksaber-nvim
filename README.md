@@ -1,10 +1,10 @@
-# ![Mando with Darksaber](https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/02/the-darksaber-din-djarin-the-mandalorian-book-of-boba-star-wars-feature.jpeg)
+## :flower_playing_cards: Introduction
 
-## Introduction
+# ![Mando with Darksaber](https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/02/the-darksaber-din-djarin-the-mandalorian-book-of-boba-star-wars-feature.jpeg)
 
 Hi, thanks for checking out my nvim config. I'm a beginner when it comes to Neovim and its configuration, but the journey has been incredibly instructional. I've found that writing down certain notes along with the config has helped me understand what's going on much better, so pardon the messy comments in every module that attempt to explain the codes functionality. Lots of comments are left from the kickstart.nvim's repository configuration (huge shout out to TJDevries, watch his [videos](https://www.youtube.com/@teej_dv) for more Neovim and Lua guides), but I added some more explanation here and there. If anything is uncertain, let me know.
 
-### How I installed Neovim from source on my WSL 2 environment (specifically running a Ubuntu distribution)
+### How I installed Neovim from source on my WSL 2 environment running Ubuntu
 
 1. Installed prerequisites: `sudo apt-get install ninja-build gettext cmake unzip curl build-essential`
 2. Cloned the neovim repository into my `~/repos` folder: `git clone https://github.com/neovim/neovim ~/repos`
@@ -13,13 +13,13 @@ Hi, thanks for checking out my nvim config. I'm a beginner when it comes to Neov
 
 `make CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim" CMAKE_BUILD_TYPE=RelWithDebInfo`
 
-Note you can change the build type here, I went with RelWithDebInfo, best of both worlds.
+(Note you can change the build type here, I went with RelWithDebInfo, best of both worlds.)
 
 5. Run the installation with `make install`
 6. Add this line to your .bashrc file: `export PATH="$HOME/src/neovim/bin:$PATH"`
    and run `source .bashrc` to make the changes permanent.
 
-Now if you run `nvim --version` you should get an output like this
+Check everything is working by running `nvim --version`. You're output should look something like:
 
 ```
 NVIM v0.10.0
@@ -28,7 +28,7 @@ LuaJIT 2.1.1713484068
 Run "nvim -V1 -v" for more info
 ```
 
-7. Now if you want some configuration files, create the config directory with `mkdir -p ~/.config/nvim` and either start writing your lua configs or fork them from mine if you want. Go crazy.
+7. Now if you want some configuration files, create the config directory with `mkdir -p ~/.config/nvim` and either start writing your own lua configs or fork them from this repository or others if you want. Go crazy.
 
 ### Another quick note on Lua and Luarocks
 
