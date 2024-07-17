@@ -1,9 +1,10 @@
+-- nvim-cmp: completion engine that offers completion suggestions from different sources (like LSPs and a snippet engine, in this case LuaSnip)
+-- LuaSnip: snippet engine that is added as a dependency and source for nvim-cmp
+-- - provides the main snippet functionality: expansion of snippets based on triggers
+
 return {
   'hrsh7th/nvim-cmp',
   event = 'InsertEnter',
-  -- NOTE: LuaSnip is a snippet engine that is added here as a dependency and a source for nvim-cmp (our main completion engine)
-  -- What this means is that nvim-cmp provides completion suggestions in Neovim from various sources such as your LSP and also in this case
-  -- snippets from LuaSnip
   dependencies = {
     {
       'L3MON4D3/LuaSnip',
@@ -19,9 +20,10 @@ return {
           return 'make install_jsregexp'
         end)(),
         --]]
-      -- NOTE: LuaSnip doesn't ship with snippets out of the box, we have to either define them manually or use prebuilt ones like
-      -- 'friendly-snippets' which is a familiar VS Code style snippets plugin
-      -- See the README about individual language/framework/plugin snippets:
+
+      -- NOTE: LuaSnip doesn't ship with snippets out of the box, we have to either define them manually or use prebuilt ones like 'friendly-snippets' which is a familiar VS Code style snippets plugin
+      -- 'friendly-snippets' includes a collection of snippets from various languages
+      -- See their README about individual language/framework/plugin snippets:
       -- https://github.com/rafamadriz/friendly-snippets
       dependencies = {
         {
