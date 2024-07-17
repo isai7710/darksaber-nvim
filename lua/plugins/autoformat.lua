@@ -1,11 +1,11 @@
 return {
   { -- Autoformat
     'stevearc/conform.nvim',
-    -- lazy load on the following events, since we only need formatting when we're working inside a buffer
+    -- lazy load on the following events (we only need formatting when we're working inside a buffer)
     -- BufReadPre: when we open an already existing file
     -- BufNewFile: triggered when we open a buffer for a file that doesn't already exist
     event = { "BufReadPre", "BufNewFile" },
-    -- set keymap to autoformat using conform
+    -- set the following keymap to autoformat
     keys = {
       {
         '<leader>af',
@@ -21,7 +21,6 @@ return {
     },
     opts = {
       notify_on_error = false,
-      -- format on save except on specific languages
       format_on_save = function(bufnr)
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
@@ -36,9 +35,7 @@ return {
         -- lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
         python = { "isort", "black" },
-        --
-        -- You can use a sub-list to tell conform to run *until* a formatter
-        -- is found.
+        -- You can use a sublist to run only the first available formatter
         javascript = { { "prettierd", "prettier" } },
         javascriptreact = { "prettier" },
         typescript = { { "prettierd", "prettier" } },

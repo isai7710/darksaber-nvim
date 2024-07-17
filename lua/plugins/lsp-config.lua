@@ -56,7 +56,8 @@ return {
           'emmet_language_server',
           'tailwindcss'
           -- REMEMBER we have to configure each of these LSPs under the config function in the nvim-lspconfig plugin below and
-          -- broadcast the cmp (snippet and autocomplete plugin) plugin's capabilities
+          -- broadcast the cmp plugin's capabilities
+          -- (cmp is the snippet and autocomplete plugin)
         }
       })
     end
@@ -69,7 +70,7 @@ return {
         -- By using the mason-tool-installer plugin we can add tools other than LSPs that we want Mason to install
         --  automatically by writing them under ensure_installed. This includes any DAPs Linters or Formatters
         -- This way we ensure more consistency throughout different systems as we don't have to use the Mason UI to
-        --  manually install other tools every time we swich sytems
+        --  manually install tools every time we switch systems
         'WhoIsSethDaniel/mason-tool-installer.nvim',
         config = function()
           local formatters = {
