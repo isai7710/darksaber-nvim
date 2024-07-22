@@ -47,7 +47,9 @@ return {
               }
             }
           },
-          'pylsp',
+          --[[ Python LSP ]]
+          --'pylsp', this one was a little sus, some reddit threads recommended jedi_language_server
+          'jedi_language_server',
           'clangd',
           'tsserver',
           -- The 'emmet_ls' LSP was fine but it provided super noisy completion for html, any text you wrote could get
