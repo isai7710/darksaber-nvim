@@ -24,14 +24,20 @@ vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
 vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
+-- Keybinds to make window navigation easier. Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
 vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Move focus to the upper window' })
+
+-- Keybinds to make window sizing easier. Use CTRL+<arrow_keys> to adjust size
+vim.keymap.set('n', '<C-Up>', '<cmd>resize +2<CR>', { desc = 'Increase window height' })
+vim.keymap.set('n', '<C-Down>', '<cmd>resize -2<CR>', { desc = 'Decrease window height' })
+vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<CR>', { desc = 'Increase window width' })
+vim.keymap.set('n', '<C-Left>', '<cmd>vertical resize -2<CR>', { desc = 'Decrease window width' })
+
 
 -- [[ Keymaps I found useful from ThePrimeagen's 0 to LSP video ]]
 -- Use move command to move highlighted text up and down lines with J and K
