@@ -11,6 +11,8 @@ return {
     lint.linters_by_ft = {
       javascript = { 'eslint_d', 'eslint' },
       javascriptreact = { 'eslint_d' },
+      typescript = { 'eslint_d' },
+      typescriptreact = { 'eslint_d' },
       python = { 'pylint' },
     }
     -- auto lint upon entering buffer, on save, and on leaving insert mode
