@@ -119,7 +119,7 @@ return {
       lspconfig.clangd.setup({
         capabilities = capabilities
       })
-      lspconfig.pylsp.setup({
+      lspconfig.jedi_language_server.setup({
         capabilities = capabilities
       })
       lspconfig.tsserver.setup({
