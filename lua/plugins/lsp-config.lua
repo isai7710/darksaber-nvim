@@ -14,15 +14,17 @@
 -- NOTE: It is important for the following plugins to be loaded in this order (we could have also just done dependencies but oh well)
 return {
   -- 1. mason.nvim package manager
-  -- To check the current status of installed tools and/or manually install other tools, you can run
+  --  Mason installs LSPs, Linters, and other tools for us
+  --  To check the current status of installed tools and/or manually install other tools, you can run
   --    :Mason
   {
     'williamboman/mason.nvim',
     lazy = false,
     opts = {}
   },
-  -- 2. mason-lspconfig.nvim connects Mason (above) to the nvim-lspconfig plugin (below) and allows us to ensure the installation of
-  --    specific language protocol servers (LSPs) such as 'lua_ls'
+  -- 2. mason-lspconfig.nvim
+  --  Enables communication between Mason (above) and LSP configs (the nvim-lspconfig plugin below)
+  --  Allows us to ensure the installation of specific language protocol servers (LSPs) such as 'lua_ls'
   {
     'williamboman/mason-lspconfig.nvim',
     config = function()
@@ -64,7 +66,8 @@ return {
       })
     end
   },
-  -- 3. nvim-lspconfig where most of the LSP configurations reside such as LSP related keymaps, LSP event attaching, etc
+  -- 3. nvim-lspconfig
+  --  where most of the LSP configurations reside such as LSP related keymaps, LSP event attaching, etc
   {
     'neovim/nvim-lspconfig',
     dependencies = {
@@ -110,7 +113,8 @@ return {
       -- So, we create new capabilities with nvim cmp, and then broadcast that to the servers below
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-      --[[ set up individual language servers here with server specific settings if necessary ]]
+      --NOTE: This part is important, here, we manually
+      -- set up individual language servers with server specific settings if necessary
       local lspconfig = require('lspconfig')
       lspconfig.lua_ls.setup({
         -- broadcast nvim cmp capabilities on every lsp if you want cmp capabilities
