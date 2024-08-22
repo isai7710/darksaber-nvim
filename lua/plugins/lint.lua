@@ -13,7 +13,7 @@ return {
       javascriptreact = { 'eslint_d' },
       typescript = { 'eslint_d' },
       typescriptreact = { 'eslint_d' },
-      python = { 'pylint' },
+      python = { 'ruff' },
     }
 
     -- [[ customize built-in linters ]]

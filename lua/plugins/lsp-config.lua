@@ -90,7 +90,8 @@ return {
             'eslint_d',
             'stylelint',
             'htmlhint',
-            'pylint'
+            'ruff'
+            --pylint (pylint was a little slow for me so I went with ruff instead)
           }
           local tools = vim.list_extend(formatters, linters)
           require('mason-tool-installer').setup({
