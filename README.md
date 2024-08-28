@@ -2,7 +2,7 @@
 
 # ![Mando with Darksaber](https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/02/the-darksaber-din-djarin-the-mandalorian-book-of-boba-star-wars-feature.jpeg)
 
-Hi, thanks for checking out my nvim config. I'm a beginner when it comes to Neovim and its configuration, but the journey has been incredibly instructional. I've found that writing down certain notes along with the config has helped me understand what's going on much better, so pardon the messy comments in every module that attempt to explain the codes functionality. Lots of comments are left from the kickstart.nvim's repository configuration (huge shout out to TJDevries, watch his [videos](https://www.youtube.com/@teej_dv) for more Neovim and Lua guides), but I added some more explanation here and there. If anything is uncertain, let me know.
+Hi, thanks for checking out my nvim config. At the moment it's a tangled but useful mess of plugins that I'm constantly tinkering with. I'm a beginner when it comes to Neovim and its configuration, but the journey has been incredibly instructional. I've found that writing down certain notes along with the config has helped me understand what's going on much better, so pardon the messy comments in every module that attempt to explain the codes functionality. Lots of comments are left from the kickstart.nvim's repository configuration (huge shout out to TJDevries, watch his [videos](https://www.youtube.com/@teej_dv) for more Neovim and Lua guides), but I added some more explanation here and there. If anything is uncertain, let me know.
 
 ### How I installed Neovim from source on my WSL 2 environment running Ubuntu
 
@@ -34,8 +34,8 @@ Run "nvim -V1 -v" for more info
 
 Since I'm using lazy.nvim, one of the requirements is to have luarocks installed. Here's how I got the default installation of Lua and Luarocks under /usr/local:
 
-1. Ensure you have the build prerequisites: `sudo apt install build-essential libreadline-dev unzip'
-2. Run the following to build and install **Lua** (download package tar ball, extract, build and install).
+1. Ensure you have the build prerequisites: `sudo apt install build-essential libreadline-dev unzip`
+2. Run the following to build and install **Lua** (download package tar ball, extract, build and install) you can use wget too.
 
 ```
 curl -R -O http://www.lua.org/ftp/lua-5.3.5.tar.gz
@@ -44,8 +44,6 @@ cd lua-5.3.5
 make linux test
 sudo make install
 ```
-
-(You can use wget too)
 
 3. Run the following to build and install **Luarocks** (same deal as above but with wget, download and extract tar ball, build and install)
 
@@ -58,11 +56,11 @@ cd luarocks-3.11.1
 
 Test you have both with `lua -v` and `luarocks --version`
 
-## Additional Notes on the config
+## Additional notes on the config
 
 ### lazy.nvim package manager
 
-check lazy's health with `:checkhealth lazy`
+[link](https://github.com/folke/lazy.nvim) to lazy.nvim's repo, huge shout out to folke. To enter the lazy UI simply execute `:Lazy`. You can check lazy's health with `:checkhealth lazy`
 
 ### opts vs. config in lazy
 
@@ -81,6 +79,3 @@ Alternatively, if `config` and `opts` are set, you can conveniently pass the `op
 ### the lazy lockfile
 
 The lazy.lock.json file reflects the states of all the plugins in your config. If kept under version control, you can revert back to your old set up whenever things break after updating plugins. The command `:Lazy restore` will revert all the plugins to the state reflected in the current lockfile.
-
--- -- See `:help vim.opt`
--- NOTE: For more options, you can see `:help option-list`
