@@ -3,6 +3,10 @@ return {
   'folke/todo-comments.nvim',
   dependencies = { 'nvim-lua/plenary.nvim' },
   opts = {
-    signs = false,
+    signs = true,
+    keywords = {
+      IMPORTANT = { icon = " ", color = "warning" }
+    },
+    merge_keywords = true
   }
 }
