@@ -62,13 +62,17 @@ Test you have both with `lua -v` and `luarocks --version`
 
 [link](https://github.com/folke/lazy.nvim) to lazy.nvim's repo, huge shout out to folke. To enter the lazy UI simply execute `:Lazy`. You can check lazy's health with `:checkhealth lazy`
 
-### opts vs. config in lazy
+### Plugin Configuration with lazy.nvim
 
-The `opts` property should be used for straightforward plugin customizations. It is a table that gets automatically passed to the plugins setup function `require("some_plugin").setup()` without the need of writing it out AND if the config property is not set
+#### \*\*The `opts` Property\*\*
 
-The `config` property is used for custom setup logic and possible plugin configurations too. Note however that this executes ONCE the plugin loads. This is useful for setting keymaps for the plugin or changing the colorscheme or something else ONCE the plugin loads. You can technically run require('plugin_name').setup({}) here and pass in some plugin customizations and it would work too.
+The `opts` property is used for simple and straightforward plugin configurations. It is a table that lazy.nvim automatically passes to the plugins setup function (`require("some_plugin").setup()`). This happens behind the scenes so you don't need to explicitly call the setup function yourself. The `opts` table is merged with the plugin's default options and is ideal for plugins that have a standard setup and don't require complex configurations.
 
-Alternatively, if `config` and `opts` are set, you can conveniently pass the `opts` table into `config` and use it to further configure the plugin like this:
+#### \*\*The `config` Property\*\*
+
+The `config` property is used for custom code or setup logic and finer control over plugin configurations too. It accepts a function that runs once the plugin loads. This property is useful for writing custom initialization logic, plugin-specific keymaps, autocommands, colorscheme changes, and more once the plugin loads. You can (and I think most plugins require you to) write require('plugin_name').setup({}) here to combine custom logic from before with standard configuration.
+
+Alternatively, you can use both `opts` and `config` if necessary by conveniently passing the `opts` table into `config` like this:
 
     config = function(_, opts)
         require("some_plugin").setup(opts)
