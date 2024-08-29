@@ -1,6 +1,6 @@
 -- nvim-cmp: completion engine that offers completion suggestions from different sources (like LSPs and a snippet engine, in this case LuaSnip)
 -- LuaSnip: snippet engine that is added as a dependency and source for nvim-cmp
--- - provides the main snippet functionality: expansion of snippets based on triggers
+--  provides the main snippet functionality: expansion of snippets based on triggers
 
 return {
   'hrsh7th/nvim-cmp',
