@@ -92,7 +92,11 @@ return {
             'ruff'
             --pylint (pylint was a little slow for me so I went with ruff instead)
           }
+          local DAPs = {
+            'codelldb',
+          }
           local tools = vim.list_extend(formatters, linters)
+          tools = vim.list_extend(tools, DAPs)
           require('mason-tool-installer').setup({
             ensure_installed = tools
           })
