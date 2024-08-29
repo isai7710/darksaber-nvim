@@ -100,11 +100,11 @@ return {
         end
       },
       -- Extensible UI for Neovim notifs and useful status updates for LSP.
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',  opts = {} },
 
-      -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
+      -- lazydev is neodev's replacement and configures Lua LSP for your Neovim config, runtime and plugins
       -- used for completion, annotations and signatures of Neovim apis
-      { 'folke/neodev.nvim', opts = {} }
+      { 'folke/lazydev.nvim', ft = 'lua', opts = {} }
     },
 
     -- [[ Main LSP Configurations ]]
