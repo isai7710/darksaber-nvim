@@ -8,5 +8,5 @@ This plugin provides the following mappings which allow you to move between Vim 
 Note - you don't need to use your tmux prefix key sequence before using the mappings.
 --]]
 return {
-  'christoomey/vim-tmux-navigator',
+  'christoomey/vim-tmux-navigator'
 }
