@@ -52,6 +52,7 @@ return {
           --'pylsp', this one was a little sus, some reddit threads recommended jedi_language_server
           'jedi_language_server',
           'clangd',
+          'cmake',
           'tsserver',
           -- The 'emmet_ls' LSP was fine but it provided super noisy completion for html, any text you wrote could get
           -- autocompleted into an arbitrary HTML tag that isnt useful, so I added the 'emmet_language_server' LSP instead to fix that
@@ -127,6 +128,9 @@ return {
         capabilities = capabilities
       })
       lspconfig.clangd.setup({
+        capabilities = capabilities
+      })
+      lspconfig.cmake.setup({
         capabilities = capabilities
       })
       lspconfig.jedi_language_server.setup({
