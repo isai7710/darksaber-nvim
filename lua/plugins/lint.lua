@@ -1,13 +1,10 @@
 return {
   'mfussenegger/nvim-lint',
-  -- similar to the formatter plugin conform.lua, we want to load this plugin on the following events:
   config = function()
-    -- load the plugin
+    -- Load the plugin
     local lint = require('lint')
 
-    -- [[ specify linters by filetype ]]
-    -- Ensure these were installed by the mason-tool-installer which is found as a dependency of the nvim-lspconfig plugin
-    -- (in the lsp-config.lua file) OR manually install them through the Mason UI or other means
+    -- Specify linters by filetype
     lint.linters_by_ft = {
       javascript = { 'eslint_d', 'eslint' },
       javascriptreact = { 'eslint_d' },
@@ -16,22 +13,17 @@ return {
       python = { 'ruff' },
     }
 
-    -- [[ customize built-in linters ]]
-    -- let's say I want to disable docstring warnings from pylint
-    -- I can import the pylint.lua file from the nvim-lint plugin (see repo for specific linter files)
-    --    local pylint = require('lint').linters.pylint
-    -- and customize any of its properties with the following
-    --    pylint.args = {
-    --      '-f',
-    --      'json',
-    --      '--from-stdin',
-    --      '--disable=missing-function-docstring,missing-module-docstring', -- *this line disables the warning
-    --      function()
-    --        return vim.api.nvim_buf_get_name(0)
-    --      end,
-    -- }
+    -- Function to display linters
+    local function display_linters()
+      local running_linters = lint.get_running()
+      if #running_linters == 0 then
+        vim.notify("No linters running", vim.log.levels.INFO)
+      else
+        vim.notify("󰦕 Running linters: " .. table.concat(running_linters, ", "), vim.log.levels.INFO)
+      end
+    end
 
-    -- auto lint upon entering buffer, on save, and on leaving insert mode
+    -- Auto lint upon entering buffer, on save, and on leaving insert mode
     vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
       group = vim.api.nvim_create_augroup('lint', { clear = true }),
       callback = function()
@@ -39,8 +31,9 @@ return {
       end
     })
 
+    -- Keymap to trigger linting and display the lint progress
     vim.keymap.set('n', '<leader>l', function()
-      lint.try_lint()
-    end, { desc = 'Trigger [L]inting for current file' })
+      display_linters()
+    end, { desc = 'Display [l]inters' })
   end
 }
