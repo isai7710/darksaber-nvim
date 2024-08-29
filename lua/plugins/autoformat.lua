@@ -43,7 +43,9 @@ return {
         css = { "prettier" },
         html = { "prettier" },
         json = { "prettier" },
-        markdown = { "prettier" }
+        markdown = { "prettier" },
+        c = { "clang-format" },
+        cpp = { "clang-format" },
       },
     },
   },
