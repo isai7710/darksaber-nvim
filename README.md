@@ -64,11 +64,11 @@ Test you have both with `lua -v` and `luarocks --version`
 
 ### Plugin Configuration with lazy.nvim
 
-#### \*\*The `opts` Property\*\*
+#### **The `opts` Property**
 
 The `opts` property is used for simple and straightforward plugin configurations. It is a table that lazy.nvim automatically passes to the plugins setup function (`require("some_plugin").setup()`). This happens behind the scenes so you don't need to explicitly call the setup function yourself. The `opts` table is merged with the plugin's default options and is ideal for plugins that have a standard setup and don't require complex configurations.
 
-#### \*\*The `config` Property\*\*
+#### **The `config` Property**
 
 The `config` property is used for custom code or setup logic and finer control over plugin configurations too. It accepts a function that runs once the plugin loads. This property is useful for writing custom initialization logic, plugin-specific keymaps, autocommands, colorscheme changes, and more once the plugin loads. You can (and I think most plugins require you to) write require('plugin_name').setup({}) here to combine custom logic from before with standard configuration.
 
