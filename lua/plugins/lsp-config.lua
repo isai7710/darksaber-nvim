@@ -49,7 +49,6 @@ return {
               }
             }
           },
-          --[[ Python LSP ]]
           --'pylsp', this one was a little sus, some reddit threads recommended jedi_language_server
           'jedi_language_server',
           'clangd',
@@ -59,7 +58,7 @@ return {
           -- 'emmet_ls'
           'emmet_language_server',
           'tailwindcss'
-          -- REMEMBER we have to configure each of these LSPs under the config function in the nvim-lspconfig plugin below and
+          -- NOTE: we have to configure each of these LSPs under the config function in the nvim-lspconfig plugin below and
           -- broadcast the cmp plugin's capabilities
           -- (cmp is the snippet and autocomplete plugin)
         }
@@ -67,13 +66,13 @@ return {
     end
   },
   -- 3. nvim-lspconfig
-  --  where most of the LSP configurations reside such as LSP related keymaps, LSP event attaching, etc
+  --  where most of the LSP configurations for Neovim reside such as LSP related keymaps, LSP event attaching, etc
   {
     'neovim/nvim-lspconfig',
     dependencies = {
       {
         -- By using the mason-tool-installer plugin we can add tools other than LSPs that we want Mason to install
-        --  automatically by writing them under ensure_installed. This includes any DAPs Linters or Formatters
+        --  automatically by passing them as a table to ensure_installed in the setup function. This includes any DAPs, Linters, or Formatters
         -- This way we ensure more consistency throughout different systems as we don't have to use the Mason UI to
         --  manually install tools every time we switch systems
         'WhoIsSethDaniel/mason-tool-installer.nvim',
@@ -83,7 +82,8 @@ return {
             'prettierd',
             'prettier',
             'isort',
-            'black'
+            'black',
+            'clang-format',
           }
           local linters = {
             'eslint',
@@ -106,16 +106,18 @@ return {
       -- used for completion, annotations and signatures of Neovim apis
       { 'folke/neodev.nvim', opts = {} }
     },
+
+    -- [[ Main LSP Configurations ]]
     config = function()
       -- LSP servers and clients are able to communicate to each other on what features they support, but we have to define
-      --  those features
+      --  those features.
       -- By default, Neovim doesn't support everything that is in an LSP specification.
-      -- When you add and configure nvim-cmp, luasnip, etc (see cmp.lua module) Neovim now has *more* capabilities.
-      -- So, we create new capabilities with nvim cmp, and then broadcast that to the servers below
+      -- When you add and configure other plugins like nvim-cmp, luasnip, etc (see cmp.lua module) Neovim now has *more* capabilities.
+      -- So, we created these new capabilities with nvim cmp, let's call it and extract its capabilities here:
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-      --NOTE: This part is important, here, we manually
-      -- set up individual language servers with server specific settings if necessary
+      -- IMPORTANT: manually set up individual language servers and broadcast cmp's capabilities to them
+      -- we can also write server specific settings if necessary
       local lspconfig = require('lspconfig')
       lspconfig.lua_ls.setup({
         -- broadcast nvim cmp capabilities on every lsp if you want cmp capabilities
