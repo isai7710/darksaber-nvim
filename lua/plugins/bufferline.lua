@@ -12,7 +12,7 @@ return {
 
     -- a couple of keymaps to cycle through, delete, reorder, and pin buffers
     vim.keymap.set('n', '[b', ':bp<CR>', { desc = 'Go to previous buffer' })
-    vim.keymap.set('n', ']b', ':bp<CR>', { desc = 'Go to next buffer' })
+    vim.keymap.set('n', ']b', ':bn<CR>', { desc = 'Go to next buffer' })
     vim.keymap.set('n', '<leader>bd', ':Bdelete<CR>', { desc = 'Delete current buffer without shifting window layout' })
     vim.keymap.set('n', '<leader>bl', ':BufferLineMoveNext', { desc = 'Reorder current buffer right' })
     vim.keymap.set('n', '<leader>bh', ':BufferLineMovePrev', { desc = 'Reorder current buffer left' })
@@ -28,11 +28,9 @@ return {
         offsets = {
           {
             filetype = "neo-tree",
-            text = function()
-              return vim.fn.getcwd()
-            end,
+            text = "Workspace",
             highlight = "Directory",
-            text_align = "left"
+            text_align = "center"
           }
         },
       },
