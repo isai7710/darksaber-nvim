@@ -35,7 +35,7 @@ return {
         },
       },
       highlights = require("catppuccin.groups.integrations.bufferline").get {
-        styles = { "italic", "bold" },
+        styles = { "bold" },
       },
     })
   end
