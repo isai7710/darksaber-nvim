@@ -72,7 +72,11 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
--- Window bar
--- vim.opt.winbar = '%=%m %f' -- Make the window bar blank
+-- Change diagnostic signs that appear in sign column
+local signs = { Error = "", Warn = "", Hint = "󰌶", Info = "" }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
 
 -- vim: ts=2 sts=2 sw=2 et
