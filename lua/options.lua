@@ -64,8 +64,8 @@ vim.opt.splitbelow = true
 -- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Set tabstop and shiftwidth
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
 -- Preview substitutions live, as you type!
