@@ -50,20 +50,78 @@ return {
     local luasnip = require('luasnip')
     luasnip.config.setup({})
 
+    -- custom defined icons for autocomplete menu:
+    local kind_icons = {
+      Text = "",
+      Method = "󰆧",
+      Function = "󰊕",
+      Constructor = "",
+      Field = "󰇽",
+      Variable = "󰂡",
+      Class = "󰠱",
+      Interface = "",
+      Module = "",
+      Property = "󰜢",
+      Unit = "",
+      Value = "󰎠",
+      Enum = "",
+      Keyword = "󰌋",
+      Snippet = "",
+      Color = "󰏘",
+      File = "󰈙",
+      Reference = "",
+      Folder = "󰉋",
+      EnumMember = "",
+      Constant = "󰏿",
+      Struct = "",
+      Event = "",
+      Operator = "󰆕",
+      TypeParameter = "󰅲",
+    }
+
+
     cmp.setup({
-      -- specify a snippet engine here (in our case LuaSnip)
+      -- disable completion when commenting in code
+      enabled = function()
+        local context = require 'cmp.config.context'
+        -- keep command mode completion enabled when cursor is in a comment
+        if vim.api.nvim_get_mode().mode == 'c' then
+          return true
+        else
+          return not context.in_treesitter_capture("comment")
+              and not context.in_syntax_group("Comment")
+        end
+      end,
+      -- specify a snippet engine (in our case LuaSnip)
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end,
       },
-      completion = { completeopt = 'menu,menuone,noinsert' },
-
+      -- display the source of the completion items in the menu along with our custom icons
+      formatting = {
+        expandable_indicator = false,
+        fields = { 'abbr', 'kind', 'menu' },
+        format = function(entry, vim_item)
+          -- Icons
+          vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
+          -- Source
+          vim_item.menu = ({
+            buffer = "[Buffer]",
+            nvim_lsp = "[LSP]",
+            luasnip = "[LuaSnip]",
+            nvim_lua = "[Lua]",
+            latex_symbols = "[LaTeX]",
+          })[entry.source.name]
+          return vim_item
+        end
+      },
+      -- adding border to windows
       window = {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered()
       },
-
+      -- mappings
       mapping = cmp.mapping.preset.insert({
         -- Not going to use kickstart.nvim's keymaps but rather the ones defined below
 
@@ -72,9 +130,9 @@ return {
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
 
         -- Completion keymaps:
-        ['<Tab>'] = cmp.mapping.confirm { select = true },
-        ['<CR>'] = cmp.mapping.select_next_item(),
-        ['<S-CR>'] = cmp.mapping.select_prev_item(),
+        ['<CR>'] = cmp.mapping.confirm { select = true },
+        ['<Tab>'] = cmp.mapping.select_next_item(),
+        ['<S-Tab>'] = cmp.mapping.select_prev_item(),
 
         -- Manually trigger a completion from nvim-cmp.
         --  Generally you don't need this, because nvim-cmp will display
