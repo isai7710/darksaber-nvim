@@ -169,6 +169,17 @@ return {
         { name = 'path' },
       },
     })
+
+    -- disable cmp when we enter a buffer with filetype 'neo-tree' so that whenever we rename or create new files
+    -- in the neo-tree plugin we don't have an autocompletion window being annoying or suggesting names
+    -- (note however this autocmd is only enabled when the cmp plugin is loaded which occurs on the 'InsertEnter' event)
+    vim.api.nvim_create_autocmd('BufEnter', {
+      callback = function()
+        if vim.bo.filetype == 'neo-tree' then
+          cmp.setup({ enabled = false })
+        end
+      end,
+    })
   end,
 }
 -- vim: ts=2 sts=2 sw=2 et
