@@ -1,5 +1,5 @@
--- nvim-cmp: completion engine that offers completion suggestions from different sources (like LSPs and a snippet engine, in this case LuaSnip)
--- LuaSnip: snippet engine that is added as a dependency and source for nvim-cmp
+-- nvim-cmp: completion engine that offers completion suggestions in a window from different sources (like LSPs and a snippet engine, in this case LuaSnip)
+-- LuaSnip: snippet engine that is added as a dependency and source for completions for nvim-cmp
 --  provides the main snippet functionality: expansion of snippets based on triggers
 
 return {
@@ -21,9 +21,9 @@ return {
         end)(),
         --]]
 
-      -- NOTE: LuaSnip doesn't ship with snippets out of the box, we have to either define them manually or use prebuilt ones like 'friendly-snippets' which is a familiar VS Code style snippets plugin
+      -- NOTE: LuaSnip doesn't ship with snippets out of the box, we have to either define them manually using Lua code or use prebuilt ones like 'friendly-snippets' which is a familiar VS Code style snippets plugin
       -- 'friendly-snippets' includes a collection of snippets from various languages
-      -- See their README about individual language/framework/plugin snippets:
+      -- See their README about individual language/framework snippets:
       -- https://github.com/rafamadriz/friendly-snippets
       dependencies = {
         {
@@ -123,9 +123,7 @@ return {
       },
       -- mappings
       mapping = cmp.mapping.preset.insert({
-        -- Not going to use kickstart.nvim's keymaps but rather the ones defined below
-
-        -- Scroll the documentation window [b]ack / [f]orward:
+        -- Scroll through the documentation window [b]ack / [f]orward:
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
 
