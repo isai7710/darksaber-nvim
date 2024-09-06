@@ -177,6 +177,8 @@ return {
       callback = function()
         if vim.bo.filetype == 'neo-tree' then
           cmp.setup({ enabled = false })
+        else
+          cmp.setup({ enabled = true })
         end
       end,
     })
