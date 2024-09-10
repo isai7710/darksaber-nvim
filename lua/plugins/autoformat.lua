@@ -1,7 +1,7 @@
 return {
   'stevearc/conform.nvim',
   -- lazy load the autoformat plugin on the following events (we only need formatting when we're working inside a buffer)
-  -- BufReadPre: when we open an already existing file
+  -- BufReadPre: when we start to edit a new buffer, right before reading the file into the buffer
   -- BufNewFile: triggered when we open a buffer for a file that doesn't already exist
   event = { "BufReadPre", "BufNewFile" },
   -- set the following keymap to autoformat
@@ -32,17 +32,17 @@ return {
     end,
     formatters_by_ft = {
       -- lua = { 'stylua' },
-      -- Conform can also run multiple formatters sequentially
+      -- Conform can also run multiple formatters sequentially by adding them to the table
       python = { "isort", "black" },
-      -- You can use a sublist to run only the first available formatter
-      javascript = { { "prettierd", "prettier" } },
+      -- to run the first available formatter add stop_after_first = true
+      javascript = { "prettierd", "prettier", stop_after_first = true },
       javascriptreact = { "prettier" },
-      typescript = { { "prettierd", "prettier" } },
+      typescript = { "prettierd", "prettier", stop_after_first = true },
       typescriptreact = { "prettier" },
       css = { "prettier" },
       html = { "prettier" },
       json = { "prettier" },
-      markdown = { "prettier" },
+      markdown = { "prettierd", "prettier", stop_after_first = true },
     },
   },
 }
