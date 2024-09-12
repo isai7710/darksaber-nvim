@@ -53,7 +53,7 @@ return {
           'jedi_language_server',
           'clangd',
           'cmake',
-          'tsserver',
+          'ts_ls',
           -- The 'emmet_ls' LSP was fine but it provided super noisy completion for html, any text you wrote could get
           -- autocompleted into an arbitrary HTML tag that isnt useful, so I added the 'emmet_language_server' LSP instead to fix that
           -- 'emmet_ls'
@@ -104,11 +104,23 @@ return {
         end
       },
       -- Extensible UI for Neovim notifs and useful status updates for LSP.
-      { 'j-hui/fidget.nvim',  opts = {} },
+      { 'j-hui/fidget.nvim',    opts = {} },
 
       -- lazydev is neodev's replacement and configures Lua LSP for your Neovim config, runtime and plugins
       -- used for completion, annotations and signatures of Neovim apis
-      { 'folke/lazydev.nvim', ft = 'lua', opts = {} }
+      {
+        'folke/lazydev.nvim',
+        ft = 'lua',
+        opts = {
+          library = {
+            -- Load luvit types when the `vim.uv` word is found
+            { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+          },
+        },
+      },
+      { 'Bilal2453/luvit-meta', lazy = true },
+      -- Allows extra capabilities provided by nvim-cmp
+      'hrsh7th/cmp-nvim-lsp',
     },
 
     -- [[ Main LSP Configurations ]]
@@ -136,7 +148,7 @@ return {
       lspconfig.jedi_language_server.setup({
         capabilities = capabilities
       })
-      lspconfig.tsserver.setup({
+      lspconfig.ts_ls.setup({
         capabilities = capabilities
       })
       lspconfig.emmet_language_server.setup({
