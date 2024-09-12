@@ -13,9 +13,12 @@ vim.opt.mouse = 'a'
 vim.opt.showmode = false
 
 -- Sync clipboard between OS and Neovim.
+--  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.opt.clipboard = 'unnamedplus'
+vim.schedule(function()
+  vim.opt.clipboard = 'unnamedplus'
+end)
 
 -- The following allow us to yank not only within Neovim but now anything we yank is automatically added to OS clipboard
 -- Similarly with pasting, anything copied on OS clipboard can be pasted on Neovim with "p"
