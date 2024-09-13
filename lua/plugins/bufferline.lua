@@ -13,7 +13,7 @@ return {
     -- a couple of keymaps to cycle through, delete, reorder, and pin buffers
     vim.keymap.set('n', '[b', ':BufferLineCyclePrev<CR>', { desc = 'Go to previous buffer' })
     vim.keymap.set('n', ']b', ':BufferLineCycleNext<CR>', { desc = 'Go to next buffer' })
-    vim.keymap.set('n', 'bd', ':Bdelete<CR>', { desc = 'Delete current buffer without shifting window layout' })
+    vim.keymap.set('n', '<leader>bd', ':Bdelete<CR>', { desc = 'Delete current buffer without shifting window layout' })
     vim.keymap.set('n', 'b]', ':BufferLineMoveNext<CR>', { desc = 'Reorder current buffer right' })
     vim.keymap.set('n', 'b[', ':BufferLineMovePrev<CR>', { desc = 'Reorder current buffer left' })
     vim.keymap.set('n', 'bp', ':BufferLineTogglePin<CR>', { desc = 'Pin current buffer' })
