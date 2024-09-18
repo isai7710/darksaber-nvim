@@ -54,9 +54,8 @@ return {
           'clangd',
           'cmake',
           'ts_ls',
-          -- The 'emmet_ls' LSP was fine but it provided super noisy completion for html, any text you wrote could get
-          -- autocompleted into an arbitrary HTML tag that isnt useful, so I added the 'emmet_language_server' LSP instead to fix that
-          -- 'emmet_ls'
+          -- The 'emmet_ls' LSP was fine but it provided super noisy completion for jsx/html, any text you wrote could get
+          -- autocompleted into an arbitrary HTML tag that isnt useful, so I added the 'emmet_language_server' LSP instead which fixes that
           'emmet_language_server',
           'tailwindcss'
           -- NOTE: we have to configure each of these LSPs under the config function in the nvim-lspconfig plugin below and
