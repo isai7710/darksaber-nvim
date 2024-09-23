@@ -1,15 +1,16 @@
 return {
   'catppuccin/nvim',
   name = 'catppuccin',
+  lazy = false,
   priority = 1000,
   opts = {
+    flavour = 'mocha',
+    transparent_background = true,
     dim_inactive = {
-      enabled = true,
+      enabled = false,
       shade = 'dark',
       percentage = 0.5,
     },
-    term_colors = true,
-    flavour = 'mocha',
     integrations = {
       bufferline = false,
       cmp = true,
