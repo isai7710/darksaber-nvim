@@ -6,7 +6,7 @@ return {
 
     -- Specify linters by filetype
     lint.linters_by_ft = {
-      javascript = { 'eslint_d', 'eslint' },
+      javascript = { 'eslint_d' },
       javascriptreact = { 'eslint_d' },
       typescript = { 'eslint_d' },
       typescriptreact = { 'eslint_d' },
