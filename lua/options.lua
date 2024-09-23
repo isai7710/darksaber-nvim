@@ -87,6 +87,16 @@ for type, icon in pairs(signs) do
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
+-- Show source in diagnostics
+vim.diagnostic.config({
+  virtual_text = {
+    source = "if_many",
+  },
+  float = {
+    source = "if_many",
+  },
+})
+
 vim.filetype.add({
   extension = {
     mdx = "markdown"
