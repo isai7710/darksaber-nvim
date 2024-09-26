@@ -22,7 +22,7 @@ return {
     bufferline.setup({
       options = {
         diagnostics = "nvim_lsp",
-        separator_style = "thick",
+        separator_style = "thin",
         show_close_icon = false,
         show_tab_indicators = true,
         offsets = {
