@@ -33,7 +33,7 @@ return {
         lsp_format_opt = 'fallback'
       end
       return {
-        timeout_ms = 500,
+        timeout_ms = 2500,
         lsp_format = lsp_format_opt
       }
     end,
@@ -43,12 +43,12 @@ return {
       python = { "isort", "black" },
       -- to run the first available formatter add stop_after_first = true
       javascript = { "prettierd", "prettier", stop_after_first = true },
-      javascriptreact = { "prettier" },
+      javascriptreact = { "prettierd" },
       typescript = { "prettierd", "prettier", stop_after_first = true },
-      typescriptreact = { "prettier" },
-      css = { "prettier" },
-      html = { "prettier" },
-      json = { "prettier" },
+      typescriptreact = { "prettierd" },
+      css = { "prettierd" },
+      html = { "prettierd" },
+      json = { "prettierd" },
       markdown = { "prettierd", "prettier", stop_after_first = true },
     },
   },
