@@ -34,6 +34,9 @@ return {
         },
       },
     },
+    -- plugins for menu customization
+    'onsails/lspkind.nvim',                -- small plugin that adds pictograms/icons to the completion menu for cmp
+    'luckasRanarison/tailwind-tools.nvim', -- required later to highlight completion colors in cmp menu using lspkind
 
     -- Add other completion capabilities or 'sources' for nvim-cmp.
     --  nvim-cmp does not ship with all these sources by default. They are split
@@ -47,38 +50,9 @@ return {
   config = function()
     -- See `:help cmp`
     local cmp = require('cmp')
+    local lspkind = require('lspkind')
     local luasnip = require('luasnip')
     luasnip.config.setup({})
-
-    -- custom defined icons for autocomplete menu:
-    local kind_icons = {
-      Text = "",
-      Method = "󰆧",
-      Function = "󰊕",
-      Constructor = "",
-      Field = "󰇽",
-      Variable = "󰂡",
-      Class = "󰠱",
-      Interface = "",
-      Module = "",
-      Property = "󰜢",
-      Unit = "",
-      Value = "󰎠",
-      Enum = "",
-      Keyword = "󰌋",
-      Snippet = "",
-      Color = "󰏘",
-      File = "󰈙",
-      Reference = "",
-      Folder = "󰉋",
-      EnumMember = "",
-      Constant = "󰏿",
-      Struct = "",
-      Event = "",
-      Operator = "󰆕",
-      TypeParameter = "󰅲",
-    }
-
 
     cmp.setup({
       -- disable completion when commenting in code
@@ -98,23 +72,23 @@ return {
           luasnip.lsp_expand(args.body)
         end,
       },
-      -- display the source of the completion items in the menu along with our custom icons
+      -- display the source and icons in completion menu
       formatting = {
         expandable_indicator = false,
         fields = { 'abbr', 'kind', 'menu' },
-        format = function(entry, vim_item)
-          -- Icons
-          vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
-          -- Source
-          vim_item.menu = ({
+        format = lspkind.cmp_format({
+          mode = 'symbol_text',
+          menu = ({
             buffer = "[Buffer]",
             nvim_lsp = "[LSP]",
             luasnip = "[LuaSnip]",
             nvim_lua = "[Lua]",
-            latex_symbols = "[LaTeX]",
-          })[entry.source.name]
-          return vim_item
-        end
+            latex_symbols = "[Latex]",
+          }),
+
+          -- utility function for highlighting colors in cmp menu with lspkind
+          before = require("tailwind-tools.cmp").lspkind_format
+        })
       },
       -- adding border to windows
       window = {
@@ -137,7 +111,7 @@ return {
         --  completions whenever it has completion options available.
         ['<C-Space>'] = cmp.mapping.complete {},
 
-        -- Some mapping for LuaSnip functionality:
+        -- Some mappings for LuaSnip functionality:
         -- Think of <c-l> as moving to the right of your snippet expansion.
         --  So if you have a snippet that's like:
         --  function $name($args)
