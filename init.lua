@@ -65,7 +65,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 --[[ Install plugins using lazy ]]
-require('lazy').setup('plugins')
+require('lazy').setup({ { import = "plugins" } }, { change_detection = { notify = false, } })
 
 --  NOTE: To check the current status of your plugins, run the following
 --    :Lazy
