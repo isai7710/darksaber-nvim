@@ -10,40 +10,44 @@ I installed Neovim from source on my WSL 2 environment running the Ubuntu distri
 
 Here's a list of the plugins used in this Neovim configuration, they were installed using the [lazy.nvim](https://lazy.folke.io/) plugin manager:
 
-1. **autocomplete.lua**: Provides autocompletion functionality for a smoother coding experience.
+- **autocomplete.lua**: Provides autocompletion functionality for a smoother coding experience.
 
-2. **autoformat.lua**: Automatically formats code according to predefined rules or language-specific standards.
+- **autoformat.lua**: Automatically formats code according to predefined rules or language-specific standards.
 
-3. **lint.lua**: Performs static code analysis to identify and report on patterns or errors in the code.
+- **lint.lua**: Performs static code analysis to identify and report on patterns or errors in the code.
 
-4. **lsp-config.lua**: Configures the Language Server Protocol (LSP) for enhanced code intelligence features in Neovim.
+- **lsp-config.lua**: Configures the Language Server Protocol (LSP) for enhanced code intelligence features in Neovim.
 
-5. **treesitter.lua**: Implements tree-sitter for better syntax highlighting and code navigation.
+- **treesitter.lua**: Implements tree-sitter for better syntax highlighting and code navigation.
 
-6. **bufferline.lua**: Adds a buffer line at the top of the editor for easy navigation between open files.
+- **bufferline.lua**: Adds a buffer line at the top of the editor for easy navigation between open files.
 
-7. **indent-line.lua**: Displays indentation guides/lines for better code readability (in my opinion).
+- **indent-line.lua**: Displays indentation guides/lines for better code readability (in my opinion).
 
-8. **lualine.lua**: A fast and customizable statusline plugin.
+- **lualine.lua**: A fast and customizable statusline plugin.
 
-9. **neo-tree.lua**: A file explorer tree for Neovim, written in Lua.
+- **neo-tree.lua**: A file explorer tree for Neovim, written in Lua.
 
-10. **colorscheme.lua**: Manages and applies color schemes.
+- **colorscheme.lua**: Manages and applies color schemes.
 
-11. **dap.lua**: Debug Adapter Protocol client implementation for Neovim.
+- **dap.lua**: Debug Adapter Protocol client implementation for Neovim.
 
-12. **dev-tools.lua**: A collection of development tools and utilities for Neovim.
+- **dev-tools.lua**: A collection of development tools and utilities for Neovim.
 
-13. **gitsigns.lua**: Adds git-related signs to the gutter and provides related functionality.
+- **flash.lua**: Code navigation tool with search labels and treesitter integration.
 
-14. **mini.lua**: A collection of minimal and fast Lua modules for Neovim from the mini.nvim library.
+- **gitsigns.lua**: Adds git-related signs to the gutter and provides related functionality.
 
-15. **nvim-surround.lua**: Provides utilities for manipulating and working with surrounding characters (parentheses, brackets, quotes, etc.).
+- **mini.lua**: A collection of minimal and fast Lua modules for Neovim from the mini.nvim library.
 
-16. **telescope.lua**: A highly extendable fuzzy finder over lists for file and text navigation.
+- **multicursor.lua**: Adds multicursor functionality to Neovim
 
-17. **todo-comments.lua**: Highlights and provides utilities for working with TODO comments.
+- **nvim-surround.lua**: Provides utilities for manipulating and working with surrounding characters (parentheses, brackets, quotes, etc.).
 
-18. **toggleterm.lua**: A Neovim plugin for persisting and toggling multiple terminals.
+- **telescope.lua**: A highly extendable fuzzy finder over lists for file and text navigation.
 
-19. **which-key.lua**: Displays available keybindings in a popup, making it easier to remember keymaps and such.
+- **todo-comments.lua**: Highlights and provides utilities for working with TODO comments.
+
+- **toggleterm.lua**: A Neovim plugin for persisting and toggling multiple terminals.
+
+- **which-key.lua**: Displays available keybindings in a popup, making it easier to remember keymaps and such.
