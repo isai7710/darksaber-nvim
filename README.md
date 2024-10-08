@@ -22,6 +22,8 @@ Here's a list of the plugins used in this Neovim configuration, they were instal
 
 - **bufferline.lua**: Adds a buffer line at the top of the editor for easy navigation between open files.
 
+- **colorizer.lua**: Adds color highlighting to color keywords (hex, RGB, etc)
+
 - **indent-line.lua**: Displays indentation guides/lines for better code readability (in my opinion).
 
 - **lualine.lua**: A fast and customizable statusline plugin.
