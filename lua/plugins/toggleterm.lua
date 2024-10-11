@@ -8,7 +8,7 @@ return {
       direction = "float",
       float_opts = {
         border = 'rounded',
-        width = 100,
+        width = 110,
         height = 20
       }
     })
