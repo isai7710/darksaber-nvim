@@ -21,11 +21,11 @@ return {
     -- Add or skip adding a new cursor by matching word/selection
     set({ "n", "v" }, "<leader>n",
       function() mc.matchAddCursor(1) end)
-    set({ "n", "v" }, "<leader>s",
+    set({ "n", "v" }, "<leader>x",
       function() mc.matchSkipCursor(1) end)
     set({ "n", "v" }, "<leader>N",
       function() mc.matchAddCursor(-1) end)
-    set({ "n", "v" }, "<leader>S",
+    set({ "n", "v" }, "<leader>X",
       function() mc.matchSkipCursor(-1) end)
 
     -- Add all matches in the document
