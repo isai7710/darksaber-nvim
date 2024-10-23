@@ -50,6 +50,7 @@ return {
       html = { "prettierd" },
       json = { "prettierd" },
       markdown = { "prettierd", "prettier", stop_after_first = true },
+      cpp = { "clang-format" },
     },
   },
 }

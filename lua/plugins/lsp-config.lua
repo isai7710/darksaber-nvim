@@ -83,6 +83,7 @@ return {
             'prettier',
             'isort',
             'black',
+            'clang-format',
           }
           local linters = {
             'eslint',
