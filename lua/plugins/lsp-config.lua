@@ -20,7 +20,13 @@ return {
   {
     'williamboman/mason.nvim',
     lazy = false,
-    opts = {}
+    opts = {
+      ui = {
+        border = "rounded",
+        width = 0.7,
+        height = 0.8,
+      }
+    }
   },
   -- 2. mason-lspconfig.nvim
   --  Enables communication between Mason (above) and LSP configs (the nvim-lspconfig plugin below)
