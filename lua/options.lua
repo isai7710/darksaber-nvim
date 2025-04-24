@@ -94,6 +94,7 @@ vim.diagnostic.config({
   },
   float = {
     source = "if_many",
+    border = "rounded",
   },
 })
 
