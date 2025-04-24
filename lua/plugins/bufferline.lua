@@ -2,6 +2,7 @@
 return {
   'akinsho/bufferline.nvim',
   version = "*",
+  event = "VeryLazy",
   dependencies = {
     'nvim-tree/nvim-web-devicons',
     -- the bufdelete plugin makes deleting buffers much less annoying with the provided :Bdelete command, default buffer deletion was :bd
@@ -23,7 +24,7 @@ return {
       options = {
         diagnostics = "nvim_lsp",
         separator_style = "thin",
-        show_close_icon = false,
+        show_buffer_close_icons = false,
         show_tab_indicators = true,
         offsets = {
           {
