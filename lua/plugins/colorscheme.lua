@@ -4,12 +4,20 @@ return {
   lazy = false,
   priority = 1000,
   opts = {
-    flavour = 'mocha',
+    flavour = 'macchiato',
     transparent_background = true,
-    dim_inactive = {
-      enabled = false,
-      shade = 'dark',
-      percentage = 0.5,
+    highlight_overrides = {
+      all = function(colors)
+      local u = require("catppuccin.utils.colors")
+          return {
+            CursorLine = {
+              bg = u.vary_color(
+                { macchiato = u.lighten(colors.mantle, 0.70, colors.base) },
+                u.darken(colors.surface0, 0.64, colors.base)
+              ),
+            },
+          }
+      end,
     },
     integrations = {
       bufferline = false,
