@@ -20,21 +20,24 @@ vim.schedule(function()
   vim.opt.clipboard = 'unnamedplus'
 end)
 
--- The following allow us to yank not only within Neovim but now anything we yank is automatically added to OS clipboard
+-- The following allow us to yank not only within Neovim but now anything we yank is automatically added to OS clipboard (FOR WSL ONLY)
 -- Similarly with pasting, anything copied on OS clipboard can be pasted on Neovim with "p"
 --  there was a lot of trial and error with this (using ChatGPT and Neovim docs) so I'm still not completely sure how it works
-vim.g.clipboard = {
-  name = 'WslClipboard',
-  copy = {
-    ['+'] = 'clip.exe',
-    ['*'] = 'clip.exe',
-  },
-  paste = {
-    ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-    ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-  },
-  cache_enabled = 0,
-}
+local is_wsl = vim.fn.has('wsl') == 1
+if is_wsl then
+  vim.g.clipboard = {
+    name = 'WslClipboard',
+    copy = {
+      ['+'] = 'clip.exe',
+      ['*'] = 'clip.exe',
+    },
+    paste = {
+      ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+      ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    },
+    cache_enabled = 0,
+  }
+end
 
 -- Enable break indent
 vim.opt.breakindent = true
