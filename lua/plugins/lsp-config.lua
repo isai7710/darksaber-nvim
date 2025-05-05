@@ -19,7 +19,6 @@ return {
   --    :Mason
   {
     'williamboman/mason.nvim',
-    lazy = false,
     opts = {
       ui = {
         border = "rounded",
@@ -44,17 +43,7 @@ return {
           --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
           --  - settings (table): Override the default settings passed when initializing the server.
           --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-          lua_ls = {
-            settings = {
-              Lua = {
-                completion = {
-                  callSnippet = 'Replace',
-                },
-                -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-                -- diagnostics = { disable = { 'missing-fields' } },
-              }
-            }
-          },
+          'lua_ls',
           --'pylsp', this one was a little sus, some reddit threads recommended jedi_language_server
           'jedi_language_server',
           'clangd',
@@ -67,7 +56,8 @@ return {
           -- NOTE: we have to configure each of these LSPs under the config function in the nvim-lspconfig plugin below and
           -- broadcast the cmp plugin's capabilities
           -- (cmp is the snippet and autocomplete plugin)
-        }
+        },
+        automatic_installation = false,
       })
     end
   },
@@ -84,7 +74,7 @@ return {
         'WhoIsSethDaniel/mason-tool-installer.nvim',
         config = function()
           local formatters = {
-            --'stylua',
+            'stylua',
             'prettierd',
             'prettier',
             'isort',
@@ -110,21 +100,20 @@ return {
         end
       },
       -- Extensible UI for Neovim notifs and useful status updates for LSP.
-      { 'j-hui/fidget.nvim',    opts = {} },
+      { 'j-hui/fidget.nvim', opts = {} },
 
-      -- lazydev is neodev's replacement and configures Lua LSP for your Neovim config, runtime and plugins
-      -- used for completion, annotations and signatures of Neovim apis
       {
-        'folke/lazydev.nvim',
-        ft = 'lua',
+        "folke/lazydev.nvim",
+        ft = "lua", -- only load on lua files
         opts = {
           library = {
+            -- See the configuration section for more details
             -- Load luvit types when the `vim.uv` word is found
-            { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+            { path = "${3rd}/luv/library", words = { "vim%.uv" } },
           },
         },
       },
-      { 'Bilal2453/luvit-meta', lazy = true },
+
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
     },
@@ -183,6 +172,10 @@ return {
           --  To jump back, press <C-t>.
           map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
 
+          -- WARN: This is not Goto Definition, this is Goto Declaration.
+          --  For example, in C this would take you to the header.
+          map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+
           -- [[ Find references for the word under your cursor ]]
           map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
 
@@ -214,10 +207,6 @@ return {
           -- [[ Opens a popup that displays documentation about the word under your cursor ]]
           --  See `:help K` for why this keymap.
           map('K', vim.lsp.buf.hover, 'Hover Documentation')
-
-          -- WARN: This is not Goto Definition, this is Goto Declaration.
-          --  For example, in C this would take you to the header.
-          map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
           -- [[ Cursor Hold and Move Autocommands ]]
           -- first get the LSP client ID
