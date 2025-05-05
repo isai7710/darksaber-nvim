@@ -6,19 +6,6 @@ return {
   opts = {
     flavour = 'macchiato',
     transparent_background = true,
-    highlight_overrides = {
-      all = function(colors)
-      local u = require("catppuccin.utils.colors")
-          return {
-            CursorLine = {
-              bg = u.vary_color(
-                { macchiato = u.lighten(colors.mantle, 0.70, colors.base) },
-                u.darken(colors.surface0, 0.64, colors.base)
-              ),
-            },
-          }
-      end,
-    },
     integrations = {
       bufferline = false,
       cmp = true,
