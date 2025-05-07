@@ -43,7 +43,8 @@ return {
           --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
           --  - settings (table): Override the default settings passed when initializing the server.
           --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-          'lua_ls',
+
+          -- 'lua_ls', -- this guy is being handled by lazydev.nvim plugin
           --'pylsp', this one was a little sus, some reddit threads recommended jedi_language_server
           'jedi_language_server',
           'clangd',
@@ -128,12 +129,8 @@ return {
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
       -- IMPORTANT: manually set up individual language servers and broadcast cmp's capabilities to them
-      -- we can also write server specific settings if necessary
+      -- to allow autocomplete features, we can also write server specific settings here if necessary
       local lspconfig = require('lspconfig')
-      lspconfig.lua_ls.setup({
-        -- broadcast nvim cmp capabilities on every lsp if you want cmp capabilities
-        capabilities = capabilities
-      })
       lspconfig.clangd.setup({
         capabilities = capabilities
       })
