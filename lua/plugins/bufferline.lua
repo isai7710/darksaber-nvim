@@ -1,8 +1,7 @@
--- bufferline: visual line at top of editor showing all open buffers (sort of like tabs)
 return {
+  -- bufferline: visual line at top of editor showing all open buffers (sort of like tabs)
   'akinsho/bufferline.nvim',
   version = "*",
-  event = "VeryLazy",
   dependencies = {
     'nvim-tree/nvim-web-devicons',
     -- the bufdelete plugin makes deleting buffers much less annoying with the provided :Bdelete command, default buffer deletion was :bd
@@ -28,9 +27,8 @@ return {
         show_tab_indicators = true,
         offsets = {
           {
-            filetype = "neo-tree",
+            filetype = "NvimTree",
             text = "",
-            highlight = "Directory",
             text_align = "center"
           }
         },

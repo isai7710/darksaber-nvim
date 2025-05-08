@@ -21,7 +21,7 @@ return {
         enabled = true,
       },
       which_key = true,
-      neotree = true,
+      nvimtree = true,
       native_lsp = {
         enabled = true,
         virtual_text = {
