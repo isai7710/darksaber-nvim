@@ -84,6 +84,31 @@ return {
       ts_ls = {},                 -- for TypeScript
       emmet_language_server = {}, -- for html/jsx
       tailwindcss = {},           -- for tailwindcss
+      -- Arduino:
+      -- Manual arduino-language-server set up following the official nvim-lspconfig recommendations in
+      -- https://github.com/neovim/nvim-lspconfig/blob/b8e7957bde4cbb3cb25a13a62548f7c273b026e9/lsp/arduino_language_server.lua
+      -- The language server relies on sketch.yaml files in each project for configuration
+      arduino_language_server = {
+        cmd = {
+          "arduino-language-server",
+          "-cli-config", vim.fn.expand("~/.arduino15/arduino-cli.yaml"),
+          "-cli", "arduino-cli",
+          "-clangd", vim.fn.stdpath("data") .. "/mason/bin/clangd",
+        },
+        filetypes = { 'arduino' },
+        capabilities = vim.tbl_deep_extend('force', capabilities, {
+          textDocument = {
+            semanticTokens = vim.NIL, -- Disable semantic tokens due to upstream bug
+          },
+          workspace = {
+            semanticTokens = vim.NIL, -- Disable semantic tokens due to upstream bug
+          },
+        }),
+        root_dir = function(bufnr, on_dir)
+          local fname = vim.api.nvim_buf_get_name(bufnr)
+          on_dir(require('lspconfig.util').root_pattern('*.ino', 'sketch.yaml')(fname))
+        end,
+      },
     }
     local formatters = {
       'stylua',
