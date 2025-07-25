@@ -104,10 +104,7 @@ return {
             semanticTokens = vim.NIL, -- Disable semantic tokens due to upstream bug
           },
         }),
-        root_dir = function(bufnr, on_dir)
-          local fname = vim.api.nvim_buf_get_name(bufnr)
-          on_dir(require('lspconfig.util').root_pattern('*.ino', 'sketch.yaml')(fname))
-        end,
+        root_dir = require('lspconfig.util').root_pattern('sketch.yaml', '*.ino')
       },
     }
     local formatters = {
