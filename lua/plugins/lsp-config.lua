@@ -108,7 +108,7 @@ return {
       },
     }
     local formatters = {
-      'stylua',
+      -- 'stylua',
       'prettierd',
       'prettier',
       'isort',
