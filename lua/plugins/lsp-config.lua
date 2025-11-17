@@ -83,7 +83,7 @@ return {
       -- Web Dev:
       ts_ls = {},                 -- for TypeScript
       emmet_language_server = {}, -- for html/jsx
-      tailwindcss = {},           -- for tailwindcss
+      -- tailwindcss = {},           -- for tailwindcss
       -- Arduino:
       -- Manual arduino-language-server set up following the official nvim-lspconfig recommendations in
       -- https://github.com/neovim/nvim-lspconfig/blob/b8e7957bde4cbb3cb25a13a62548f7c273b026e9/lsp/arduino_language_server.lua
@@ -96,6 +96,7 @@ return {
           "-clangd", vim.fn.stdpath("data") .. "/mason/bin/clangd",
         },
         filetypes = { 'arduino' },
+        root_markers = { { "sketch.yaml" }, "*.ino" },
         capabilities = vim.tbl_deep_extend('force', capabilities, {
           textDocument = {
             semanticTokens = vim.NIL, -- Disable semantic tokens due to upstream bug
@@ -104,7 +105,6 @@ return {
             semanticTokens = vim.NIL, -- Disable semantic tokens due to upstream bug
           },
         }),
-        root_dir = require('lspconfig.util').root_pattern('sketch.yaml', '*.ino')
       },
     }
     local formatters = {
@@ -125,28 +125,27 @@ return {
     local DAPs = {
       'codelldb',
     }
-    local tools = vim.list_extend(formatters, linters)
-    vim.list_extend(tools, DAPs)
+    local tools = vim.list_extend(vim.list_extend(formatters, linters), DAPs)
 
-    local ensure_installed = vim.tbl_keys(servers or {})
+    local ensure_installed = vim.tbl_keys(servers)
     vim.list_extend(ensure_installed, tools)
 
     require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
 
-    require('mason-lspconfig').setup {
-      ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-      automatic_enable = true,
-      handlers = {
-        function(server_name)
-          local server = servers[server_name] or {}
-          -- This handles overriding only values explicitly passed
-          -- by the server configuration above. Useful when disabling
-          -- certain features of an LSP (for example, turning off formatting for ts_ls)
-          server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-          require('lspconfig')[server_name].setup(server)
-        end,
-      },
-    }
+    for name, config in pairs(servers) do
+      config.capabilities = vim.tbl_deep_extend(
+        'force', capabilities, config.capabilities or {})
+      vim.lsp.config[name] = config
+    end
+
+    require('mason-lspconfig').setup({
+      ensure_installed = {},
+      automatic_enable = false,
+    })
+
+    for name, _ in pairs(servers) do
+      vim.lsp.enable(name)
+    end
 
     --  This function gets run when an LSP attaches to a particular buffer.
     --    That is to say, every time a new file is opened that is associated with
