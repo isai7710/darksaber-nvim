@@ -36,7 +36,7 @@ return {
     },
     -- plugins for menu customization
     'onsails/lspkind.nvim',                -- small plugin that adds pictograms/icons to the completion menu for cmp
-    'luckasRanarison/tailwind-tools.nvim', -- required later to highlight completion colors in cmp menu using lspkind
+    -- 'luckasRanarison/tailwind-tools.nvim', -- required later to highlight completion colors in cmp menu using lspkind
 
     -- Add other completion capabilities or 'sources' for nvim-cmp.
     --  nvim-cmp does not ship with all these sources by default. They are split
@@ -87,7 +87,7 @@ return {
           }),
 
           -- utility function for highlighting colors in cmp menu with lspkind
-          before = require("tailwind-tools.cmp").lspkind_format
+          -- before = require("tailwind-tools.cmp").lspkind_format
         })
       },
       -- adding border to windows
