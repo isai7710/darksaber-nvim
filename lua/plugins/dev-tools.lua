@@ -4,6 +4,7 @@ return {
     -- provides a good workflow with CMake projects comparable to the vscode-cmake-tools extension
     'Civitasv/cmake-tools.nvim',
   },
+  --[[
   {
     -- leverages tailwind LSP and treesitter to provide some cool tailwind tools
     "luckasRanarison/tailwind-tools.nvim",
@@ -16,6 +17,7 @@ return {
     },
     opts = {},
   },
+  --]]
   {
     "MaximilianLloyd/tw-values.nvim",
     keys = {
